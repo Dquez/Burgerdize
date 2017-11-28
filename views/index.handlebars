@@ -8,7 +8,7 @@
 <ul>
   {{#each burgers}} 
     {{#unless devoured}} 
-     <li>{{burger_name}} </li> {{!-- {{> cats/cat-block sleep=true}} --}} 
+     <li>{{burger_name}} <button class="devour" data-id="{{id}}">GIVE IT TO ME!</button> </li> {{!-- {{> cats/cat-block sleep=true}} --}} 
     {{/unless}} 
   {{/each}}
 </ul>
@@ -32,24 +32,13 @@
 <p>Enter a burger you'd like to eat, then click submit</p>
 
 <script type="text/javascript">
-/* $(".delmovie").on("click", function(event) {
-    var id = $(this).data("movieid");
-    // Send the DELETE request.
-    $.ajax("/movies/" + id, {
-      type: "DELETE"
-    }).then(
-      function() {
-        console.log("deleted id ", id);
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  }); */
+
   $(".create-form").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
     var newBurger = {
-      burger: $("textarea[name=burger]").val().trim()
+      burger: $("textarea[name=burger]").val().trim(),
+      devourer: 0
     };
     // Send the POST request.
     $.ajax("/burger", {
@@ -63,7 +52,24 @@
       }
     );
   });
-
+$(document).on("click", ".devour", function(event) {
+   let devBurger = {
+    id: $(this).data("id"),
+    devoured: true
+   } 
+   console.log(devBurger.id);
+    // Send the PUT request.
+    $.ajax("/devour/" + devBurger.id, {
+      type: "PUT",
+      data: devBurger
+    }).then(
+      function() {
+        console.log("updated id ", devBurger.id);
+        // Reload the page to get the updated list
+        window.location.replace("/");
+      }
+    );
+  });
   /* $("#updatemovie").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
