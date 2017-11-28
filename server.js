@@ -1,9 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
-
-const port = 8080;
-
+let port = process.env.PORT || 8080;
 const app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
