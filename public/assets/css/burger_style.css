@@ -1,3 +1,11 @@
+* {
+  margin: 0 auto;
+  padding: 10px;
+  font-family: Courier, monospace;
+  font-size:1.1em;
+}
+
+
 li {
   padding: 5px;
   margin: 5px;
@@ -16,4 +24,9 @@ li {
 
 .form-group {
   margin-bottom: 5px;
+}
+#burger-img {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
 }

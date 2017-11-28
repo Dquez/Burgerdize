@@ -1,40 +1,108 @@
-<h1>Cats!</h1>
 
-<h2>Cats that are not sleepy!</h2>
+
+<img src="pixel-burger.png" alt="Pixel Burger" id="burger-img" >
+<h1>Eat-Da-Burger!</h1>
+
+<h4>Burgers that are not devoured</h4>
 
 <ul>
-  {{#each burgers}}
-
-  <li>{{burger_name}}: {{devoured}}</li>
-    {{!-- {{#unless sleepy}}
-      {{> cats/cat-block sleep=true}}
-    {{/unless}} --}}
+  {{#each burgers}} 
+    {{#unless devoured}} 
+     <li>{{burger_name}} </li> {{!-- {{> cats/cat-block sleep=true}} --}} 
+    {{/unless}} 
+  {{/each}}
+</ul>
+<hr>
+<h4>Eaten burgers</h4>
+<ul>
+  {{#each burgers}} 
+  {{#if devoured}} 
+  <li>{{burger_name}} </li>
+    {{/if}} 
   {{/each}}
 </ul>
 
-{{!-- <h2>Cats that are sleepy!</h2> --}}
 
-{{!-- <ul>
-  {{#each cats}}
-    {{#if sleepy}}
-      {{> cats/cat-block sleep=false}}
-    {{/if}}
-  {{/each}}
-</ul> --}}
+<form class="create-form" method="POST" action="/burger">
+    <textarea name="burger" rows="4" cols="30">
+    </textarea>
+    <br>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+<p>Enter a burger you'd like to eat, then click submit</p>
 
-{{!-- <h2>Add a Cat</h2>
-<form class="create-form">
+<script type="text/javascript">
+/* $(".delmovie").on("click", function(event) {
+    var id = $(this).data("movieid");
+    // Send the DELETE request.
+    $.ajax("/movies/" + id, {
+      type: "DELETE"
+    }).then(
+      function() {
+        console.log("deleted id ", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  }); */
+  $(".create-form").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+    var newBurger = {
+      burger: $("textarea[name=burger]").val().trim()
+    };
+    // Send the POST request.
+    $.ajax("/burger", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function() {
+        console.log("Added new burger");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
 
-  <div class="form-group">
-    <label for="ca">Cat Name:</label>
-    <input type="text" id="ca" name="name">
-  </div>
+  /* $("#updatemovie").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+    var id = $("[name=id]").val().trim();
+    var updatedMovie = {
+      movie: $("#updatemovie [name=movie]").val().trim()
+    };
+    // Send the PUT request.
+    $.ajax("/movies/" + id, {
+      type: "PUT",
+      data: updatedMovie
+    }).then(
+      function() {
+        console.log("updated id ", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  }); */
+</script>
 
-  <div class="form-group">
-    <label for="slee">Sleepy?</label><br>
-    <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
-    <input type="radio" name="sleepy" value="0"> Awake
-  </div>
+  {{!-- $(".create-form").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
 
-  <button type="submit">Add Cat</button>
-</form> --}}
+    var newQuote = {
+      author: $("#auth").val().trim(),
+      quote: $("#quo").val().trim()
+    };
+
+    // Send the POST request.
+    $.ajax("/api/quotes", {
+      type: "POST",
+      data: newQuote
+    }).then(
+      function() {
+        console.log("created new quote");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  }); --}}

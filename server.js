@@ -5,10 +5,11 @@ let port = process.env.PORT || 8080;
 const app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("public"));
-
+// app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
+app.use(express.static(__dirname + '/public/assets/img')); 
 // Set Handlebars.
 const exphbs = require("express-handlebars");
 

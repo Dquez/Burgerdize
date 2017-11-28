@@ -11,21 +11,26 @@ router.get("/", function(req, res) {
     var hbsObject = {
       burgers: data
     };
-    console.log(hbsObject);
+    // console.log(hbsObject);
     res.render("index", hbsObject);
   });
 });
 
-// router.post("/api/cats", function(req, res) {
-//   cat.create([
-//     "name", "sleepy"
-//   ], [
-//     req.body.name, req.body.sleepy
-//   ], function(result) {
-//     // Send back the ID of the new quote
-//     res.json({ id: result.insertId });
+router.post("/burger", function(req, res) {
+  console.log(req.body);
+  burger.create("burger_name", [req.body.burger], function(data) {
+    res.redirect("/");
+  });
+});
+
+// app.post("/movies", function (req, res) {
+//   connection.query("INSERT INTO movies (movie) VALUES (?)", req.body.movie, function (err, result) {
+//       if (err) throw err;
+//       // console.log(req.body.plan);
+//       res.redirect("/");
 //   });
 // });
+
 
 // router.put("/api/cats/:id", function(req, res) {
 //   var condition = "id = " + req.params.id;
