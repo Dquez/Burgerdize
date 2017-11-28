@@ -3,24 +3,26 @@
 <h2>Cats that are not sleepy!</h2>
 
 <ul>
-  {{#each cats}}
-    {{#unless sleepy}}
+  {{#each burgers}}
+
+  <li>{{burger_name}}: {{devoured}}</li>
+    {{!-- {{#unless sleepy}}
       {{> cats/cat-block sleep=true}}
-    {{/unless}}
+    {{/unless}} --}}
   {{/each}}
 </ul>
 
-<h2>Cats that are sleepy!</h2>
+{{!-- <h2>Cats that are sleepy!</h2> --}}
 
-<ul>
+{{!-- <ul>
   {{#each cats}}
     {{#if sleepy}}
       {{> cats/cat-block sleep=false}}
     {{/if}}
   {{/each}}
-</ul>
+</ul> --}}
 
-<h2>Add a Cat</h2>
+{{!-- <h2>Add a Cat</h2>
 <form class="create-form">
 
   <div class="form-group">
@@ -35,4 +37,4 @@
   </div>
 
   <button type="submit">Add Cat</button>
-</form>
+</form> --}}
