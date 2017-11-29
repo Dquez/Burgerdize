@@ -1,27 +1,40 @@
 <img src="pixel-burger.png" alt="Pixel Burger" id="burger-img">
+<div class="container">
+  <h1 class="text-center">
+    <strong>Eat-Da-Burger!</strong>
+  </h1>
+  <div class="row">
+    <div class="col-lg-6">    
+        <h4>Burgers that are not devoured</h4>
+        <ul>
+          {{#each burgers}} {{#unless devoured}}
+          <li>{{burger_name}}
+            <button class="devour" data-id="{{id}}">GIVE IT TO ME!</button>
+          </li>
+          {{/unless}} {{/each}}
+        </ul>
+    </div>
+    <div class="col-lg-6">
 
-<h1>Eat-Da-Burger!</h1>
-<h4>Burgers that are not devoured</h4>
-<ul>
-  {{#each burgers}} {{#unless devoured}}
-  <li>{{burger_name}}
-    <button class="devour" data-id="{{id}}">GIVE IT TO ME!</button>
-  </li>
-  {{/unless}} {{/each}}
-</ul>
-<hr>
-<h4>Eaten burgers</h4>
-<ul>
-  {{#each burgers}} {{#if devoured}}
-  <li>{{burger_name}}
-    <button class="deleteBurger" data-id="{{id}}">Make room for more!</button>
-  </li>
-  {{/if}} {{/each}}
-</ul>
-<form class="create-form" method="POST" action="/burger">
-  <textarea name="burger" rows="4" cols="30">
-  </textarea>
-  <br>
-  <button class="btn btn-primary" type="submit">Submit</button>
-</form>
-<p>Enter a burger you'd like to eat, then click submit</p>
+        <h4>Eaten burgers</h4>
+        <ul>
+          {{#each burgers}} {{#if devoured}}
+          <li>{{burger_name}}
+            <button class="deleteBurger" data-id="{{id}}">Make room for more!</button>
+          </li>
+          {{/if}} {{/each}}
+        </ul>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3" id="form">
+        <form class="create-form" method="POST" action="/burger">
+          <textarea name="burger" rows="4" cols="30">
+          </textarea>
+          <br>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+        <p>Enter a burger you'd like to eat, then click submit</p>
+      </div>
+    </div>
+  </div>
