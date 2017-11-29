@@ -17,7 +17,7 @@
 <ul>
   {{#each burgers}} 
   {{#if devoured}} 
-  <li>{{burger_name}} </li>
+  <li>{{burger_name}} <button class="deleteBurger" data-id="{{id}}">Make room for more!</button> </li>
     {{/if}} 
   {{/each}}
 </ul>
@@ -53,42 +53,40 @@
     );
   });
 $(document).on("click", ".devour", function(event) {
-   let devBurger = {
+   let devourBurger = {
     id: $(this).data("id"),
     devoured: true
    } 
-   console.log(devBurger.id);
     // Send the PUT request.
-    $.ajax("/devour/" + devBurger.id, {
+    $.ajax("/devour/" + devourBurger.id, {
       type: "PUT",
-      data: devBurger
+      data: devourBurger
     }).then(
       function() {
-        console.log("updated id ", devBurger.id);
+        console.log("updated id ", devourBurger.id);
         // Reload the page to get the updated list
         window.location.replace("/");
       }
     );
   });
-  /* $("#updatemovie").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
-    var id = $("[name=id]").val().trim();
-    var updatedMovie = {
-      movie: $("#updatemovie [name=movie]").val().trim()
-    };
+  $(document).on("click", ".deleteBurger", function(event) {
+   let deleteBurger = {
+    id: $(this).data("id"),
+   } 
+   console.log(deleteBurger.id);
     // Send the PUT request.
-    $.ajax("/movies/" + id, {
-      type: "PUT",
-      data: updatedMovie
+    $.ajax("/delete/" + deleteBurger.id, {
+      type: "DELETE",
+      data: deleteBurger
     }).then(
       function() {
-        console.log("updated id ", id);
+        console.log("delete id ", deleteBurger.id);
         // Reload the page to get the updated list
-        location.reload();
+        window.location.replace("/");
       }
     );
-  }); */
+  });
+
 </script>
 
   {{!-- $(".create-form").on("submit", function(event) {
