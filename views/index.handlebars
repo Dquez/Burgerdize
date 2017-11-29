@@ -1,112 +1,27 @@
+<img src="pixel-burger.png" alt="Pixel Burger" id="burger-img">
 
-
-<img src="pixel-burger.png" alt="Pixel Burger" id="burger-img" >
 <h1>Eat-Da-Burger!</h1>
-
 <h4>Burgers that are not devoured</h4>
-
 <ul>
-  {{#each burgers}} 
-    {{#unless devoured}} 
-     <li>{{burger_name}} <button class="devour" data-id="{{id}}">GIVE IT TO ME!</button> </li> {{!-- {{> cats/cat-block sleep=true}} --}} 
-    {{/unless}} 
-  {{/each}}
+  {{#each burgers}} {{#unless devoured}}
+  <li>{{burger_name}}
+    <button class="devour" data-id="{{id}}">GIVE IT TO ME!</button>
+  </li>
+  {{/unless}} {{/each}}
 </ul>
 <hr>
 <h4>Eaten burgers</h4>
 <ul>
-  {{#each burgers}} 
-  {{#if devoured}} 
-  <li>{{burger_name}} <button class="deleteBurger" data-id="{{id}}">Make room for more!</button> </li>
-    {{/if}} 
-  {{/each}}
+  {{#each burgers}} {{#if devoured}}
+  <li>{{burger_name}}
+    <button class="deleteBurger" data-id="{{id}}">Make room for more!</button>
+  </li>
+  {{/if}} {{/each}}
 </ul>
-
-
 <form class="create-form" method="POST" action="/burger">
-    <textarea name="burger" rows="4" cols="30">
-    </textarea>
-    <br>
-    <button class="btn btn-primary" type="submit">Submit</button>
+  <textarea name="burger" rows="4" cols="30">
+  </textarea>
+  <br>
+  <button class="btn btn-primary" type="submit">Submit</button>
 </form>
 <p>Enter a burger you'd like to eat, then click submit</p>
-
-<script type="text/javascript">
-
-  $(".create-form").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
-    var newBurger = {
-      burger: $("textarea[name=burger]").val().trim(),
-      devourer: 0
-    };
-    // Send the POST request.
-    $.ajax("/burger", {
-      type: "POST",
-      data: newBurger
-    }).then(
-      function() {
-        console.log("Added new burger");
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  });
-$(document).on("click", ".devour", function(event) {
-   let devourBurger = {
-    id: $(this).data("id"),
-    devoured: true
-   } 
-    // Send the PUT request.
-    $.ajax("/devour/" + devourBurger.id, {
-      type: "PUT",
-      data: devourBurger
-    }).then(
-      function() {
-        console.log("updated id ", devourBurger.id);
-        // Reload the page to get the updated list
-        window.location.replace("/");
-      }
-    );
-  });
-  $(document).on("click", ".deleteBurger", function(event) {
-   let deleteBurger = {
-    id: $(this).data("id"),
-   } 
-   console.log(deleteBurger.id);
-    // Send the PUT request.
-    $.ajax("/delete/" + deleteBurger.id, {
-      type: "DELETE",
-      data: deleteBurger
-    }).then(
-      function() {
-        console.log("delete id ", deleteBurger.id);
-        // Reload the page to get the updated list
-        window.location.replace("/");
-      }
-    );
-  });
-
-</script>
-
-  {{!-- $(".create-form").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
-
-    var newQuote = {
-      author: $("#auth").val().trim(),
-      quote: $("#quo").val().trim()
-    };
-
-    // Send the POST request.
-    $.ajax("/api/quotes", {
-      type: "POST",
-      data: newQuote
-    }).then(
-      function() {
-        console.log("created new quote");
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  }); --}}
