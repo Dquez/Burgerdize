@@ -60,8 +60,6 @@ const orm = {
     queryString += printQuestionMarks(val.length);
     queryString += ") ";
 
-    console.log(queryString);
-
     connection.query(queryString, val, function(err, result) {
       if (err) {
         throw err;
@@ -90,7 +88,7 @@ const orm = {
     queryString += "ALTER TABLE " +  table + " DROP id; "
     queryString += "ALTER TABLE " + table + " AUTO_INCREMENT = 1; "
     queryString += "ALTER TABLE " + table  + " ADD id int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;"
-    console.log(queryString);
+
     connection.query(queryString, condition, function (err, result) {
       if (err) {
         throw err;
