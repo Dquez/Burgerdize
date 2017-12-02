@@ -2,33 +2,34 @@
   margin: 0 auto;
   padding: 10px;
   font-family: Courier, monospace;
-  font-size:1.1em;
+  font-size:1.15em;
 }
 
-
-li {
-  padding: 5px;
-  margin: 5px;
-  background: #faebd7;
+.text-center, #enter-burger {
+  color:goldenrod;
 }
 
-.label {
-  font-weight: bold;
+.burgerDiv {
+  color: #450101;
+}
+#not-devoured {
+  color: 	#32c704;
 }
 
-.create-update-form {
-  padding: 5px;
-  margin: 5px;
-  background: aqua;
+#devoured {
+  color: #ec3521;
 }
+/* .container {
+  background-color: goldenrod;
+} */
 
-.form-group {
-  margin-bottom: 5px;
-}
 img{
   height: 200px;
   width: 200px;
   margin: 0 auto;
+  position:absolute;
+  top:0;
+  z-index: -1;
 }
 
 #form {
