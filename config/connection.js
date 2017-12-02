@@ -3,9 +3,10 @@ const mysql = require("mysql");
 let connection;
 
 //  heroku's database, if it exists, we use it to create a connection, otherwise, we use the local one.
-if (process.env.JAWSDB_URL){
+if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
-}else {
+  console.log("jaws");
+} else {
   connection = mysql.createConnection({
     port: 3306,
     host: "localhost",
@@ -17,7 +18,7 @@ if (process.env.JAWSDB_URL){
 }
 
 // Make connection.
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) {
     console.error("error connecting: " + err.stack);
     return;

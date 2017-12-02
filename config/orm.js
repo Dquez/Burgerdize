@@ -38,17 +38,17 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 const orm = {
-  all: function(tableInput, cb) {
+  all: function (tableInput, cb) {
     // this is where we actually get to interact witht he database, the connection retrieves the data with is then passed as a parameter to the callback function (all(cb)) to be passed back to the burger.js file
     let queryString = "SELECT * FROM " + tableInput + ";";
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
       cb(result);
     });
   },
-  create: function(table, col, val, cb) {
+  create: function (table, col, val, cb) {
     let queryString = "INSERT INTO " + table;
 
     queryString += " (";
@@ -58,21 +58,21 @@ const orm = {
     queryString += printQuestionMarks(val.length);
     queryString += ") ";
 
-    connection.query(queryString, val, function(err, result) {
+    connection.query(queryString, val, function (err, result) {
       if (err) {
         throw err;
       }
       cb(result);
     });
   },
-  update: function(table, objColVal, condition, cb) {
+  update: function (table, objColVal, condition, cb) {
     let queryString = "UPDATE " + table;
     queryString += " SET ";
     queryString += objToSql(objColVal);
     queryString += " WHERE ";
     queryString += condition;
 
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
@@ -80,12 +80,12 @@ const orm = {
     });
   },
   // this function deletes from DB using the ID specified from the client, then adjusts the IDs in the DB to reflect the change i.e instead of 1,3,4,6 we'll have 1,2,3,4 now
-  delete: function(table, condition, cb) {
+  delete: function (table, condition, cb) {
     let queryString = "DELETE FROM " + table;
     queryString += " WHERE " + condition + "; ";
-    queryString += "ALTER TABLE " +  table + " DROP id; "
+    queryString += "ALTER TABLE " + table + " DROP id; "
     queryString += "ALTER TABLE " + table + " AUTO_INCREMENT = 1; "
-    queryString += "ALTER TABLE " + table  + " ADD id int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;"
+    queryString += "ALTER TABLE " + table + " ADD id int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;"
 
     connection.query(queryString, condition, function (err, result) {
       if (err) {
