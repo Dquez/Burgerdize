@@ -15,4 +15,4 @@ I primarily worked with node.js, handlebars, and the express frame work to handl
 
 Running an npm install should install all of the dependencies you need to get this project started.
 
-[Burgerdize](https://friend-finder-080817.herokuapp.com)
+[Burgerdize]( https://burgerdize.herokuapp.com/)
