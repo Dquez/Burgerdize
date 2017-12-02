@@ -1,10 +1,11 @@
 const express = require("express");
+// create an instance of our router to use instead of only using app,get()
 const router = express.Router();
 
-// Import the model (cat.js) to use its database functions.
+// Import the model (burger.js) to use its database functions.
 let burger = require("../models/burger.js");
 
-// Home route that displays the page and all the burgers
+// Home route that displays the main page
 router.get("/", function(req, res) {
   burger.all(function(data) {
     let hbsObject = {

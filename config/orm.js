@@ -42,6 +42,7 @@ function objToSql(ob) {
 // Object for all our SQL statement functions.
 const orm = {
   all: function(tableInput, cb) {
+    // this is where we actually get to interact witht he database, the connection retrieves the data with is then passed as a parameter to the callback function (all(cb)) to be passed back to the burger.js file
     let queryString = "SELECT * FROM " + tableInput + ";";
     connection.query(queryString, function(err, result) {
       if (err) {

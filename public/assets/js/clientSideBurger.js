@@ -1,27 +1,28 @@
 $(document).ready(function(){
     animateDiv();
-    
 });
 
 function makeNewPosition(){
     
-    // Get viewport dimensions (remove the dimension of the div)
+    // This gets the current user's screen dimensions
     var h = screen.availHeight - 200;
     var w = screen.availWidth - 200;
     
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
-    
+    // calculates a new height and new width everytime this funciton is called
     return [nh,nw];    
     
 }
 
 function animateDiv(){
-    var newq = makeNewPosition();
-    var oldq = $('#burger-img').offset();
-    var speed = calcSpeed([oldq.top, oldq.left], newq);
+
+    var newSpot = makeNewPosition();
+    // returns the offset coordinates for the selected element, relative to the document.
+    var oldSpot = $('#burger-img').offset();
+    var speed = calcSpeed([oldSpot.top, oldSpot.left], newSpot);
     
-    $('#burger-img').animate({ top: newq[0], left: newq[1] }, speed, function(){
+    $('#burger-img').animate({ top: newSpot[0], left: newSpot[1] }, speed, function(){
       animateDiv();        
     });
     
@@ -32,6 +33,7 @@ function calcSpeed(prev, next) {
     var x = Math.abs(prev[1] - next[1]);
     var y = Math.abs(prev[0] - next[0]);
 
+    // ternary operator to determine if x is greater than y, if so then return x, if not, return y
     var greatest = x > y ? x : y;
     var speedModifier = 0.1;
 
@@ -40,64 +42,6 @@ function calcSpeed(prev, next) {
     return speed;
 
 }
-
-
-
-
-
-// $(document).on("ready", function () {
-//     let burgerMove = setInterval(myTimer, 1000);
-
-
-//     let w = window.innerWidth -180;
-//     let h = window.innerHeight - 180;
-//     // top: 103px; left: 106px;
-
-
-//     function myTimer() {
-//         let topPixels = Math.floor(Math.random() * 200);
-//         let leftPixels = Math.floor(Math.random() * 200);
-//         $("#burger-img").animate({
-//             top: topPixels,
-//             left: leftPixels
-//         }, "slow");
-//     }
-// });
-$(document).keyup(function (e) {
-    switch (e.which) {
-        case 40:
-            $("#burger-img").animate({
-                top: "+=200px"
-            }, "normal");
-    }
-});
-// Move Buttons (Keyboard Right)
-$(document).keyup(function (e) {
-    switch (e.which) {
-        case 39:
-            $("#burger-img").animate({
-                left: "+=200px"
-            }, "normal");
-    }
-});
-// Move Buttons (Keyboard Up)
-$(document).keyup(function (e) {
-    switch (e.which) {
-        case 38:
-            $("#burger-img").animate({
-                top: "-=200px"
-            }, "normal");
-    }
-});
-// Move Buttons (Keyboard Left)
-$(document).keyup(function (e) {
-    switch (e.which) {
-        case 37:
-            $("#burger-img").animate({
-                left: "-=200px"
-            }, "normal");
-    }
-});
 
 $(".create-form").on("submit", function (event) {
     // Make sure to preventDefault on a submit event to prevent form from submitting as it normally would.
@@ -128,6 +72,7 @@ $(document).on("click", ".devour", function (event) {
         type: "PUT",
         data: devourBurger
     }).then(
+        // here we have a series of function calls, the first one is the three quarters function, the others are callbacks once the time interval is done.
         function () {
             let quarterBurger = function () {
                 $("#burger-img").attr("src", "assets/img/Quarter-Burger.png");
@@ -149,10 +94,6 @@ $(document).on("click", ".devour", function (event) {
                 }, 600);
             }
             threeQuarters();
-
-
-            // Reload the page to get the updated list
-            // window.location.replace("/");
         }
     );
 });

@@ -2,7 +2,7 @@
 const mysql = require("mysql");
 let connection;
 
-
+//  heroku's database, if it exists, we use it to create a connection, otherwise, we use the local one.
 if (process.env.JAWSDB_URL){
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 }else {

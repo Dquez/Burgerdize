@@ -3,6 +3,7 @@ const orm = require("../config/orm.js");
 
 const burger = {
   all: function (cb) {
+    // when this function is called, the call back with the res "(result)" paramater will be executed.. within the callback, we execute the first parameter passed into the function  all(cb), this way we send the information back to the controller file
     orm.all("burgers", function (res) {
       cb(res);
     });
