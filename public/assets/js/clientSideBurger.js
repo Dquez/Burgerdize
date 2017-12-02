@@ -71,7 +71,7 @@ $(document).on("click", ".devour", function (event) {
     }
     // Send the PUT request.
     $.ajax("/devour/" + devourBurger.id + "?_method=PUT", {
-        type: "PUT",
+        type: "POST",
         data: devourBurger
     }).done(
         // here we have a series of function calls, the first one is the three quarters function, the others are callbacks once the time interval is done.
@@ -105,7 +105,7 @@ $(document).on("click", ".deleteBurger", function (event) {
     }
     // Send the DELETE request.
     $.ajax("/delete/" + deleteBurger.id + "?_method=DELETE", {
-        type: "DELETE",
+        type: "POST",
         data: deleteBurger
     }).done(
         function () {
