@@ -70,7 +70,7 @@ $(document).on("click", ".devour", function (event) {
         devoured: true
     }
     // Send the PUT request.
-    $.ajax("/devour/" + devourBurger.id, {
+    $.ajax("/devour/" + devourBurger.id + "?_method=PUT", {
         type: "PUT",
         data: devourBurger
     }).done(
@@ -103,9 +103,8 @@ $(document).on("click", ".deleteBurger", function (event) {
     let deleteBurger = {
         id: $(this).data("id"),
     }
-
     // Send the DELETE request.
-    $.ajax("/delete/" + deleteBurger.id, {
+    $.ajax("/delete/" + deleteBurger.id + "?_method=DELETE", {
         type: "DELETE",
         data: deleteBurger
     }).done(

@@ -26,7 +26,7 @@
 {{!-- Burgers that have not been eaten, marked as true in the database --}}
       <h2 id="devoured">Eaten burgers</h2>
       {{#each burgers}} {{#if devoured}}
-      <div class="burgerDiv ">
+      <div class="burgerDiv">
         <input type="text" name="burger" value="{{id}}. {{burger_name}}" disabled>
         <button class="deleteBurger btn btn-danger" data-id="{{id}}">Make room for more!</button>
       </div>
