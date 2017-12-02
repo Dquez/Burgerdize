@@ -8,29 +8,26 @@ const connection = require("../config/connection.js");
 // ["?", "?", "?"].toString() => "?,?,?";
 function printQuestionMarks(num) {
   let arr = [];
-
   for (let i = 0; i < num; i++) {
     arr.push("?");
   }
-
   return arr.toString();
 }
 
 // Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
   let arr = [];
-
   // loop through the keys and push the key/value as a string int arr
   for (let key in ob) {
     let value = ob[key];
     // check to skip hidden properties
     if (Object.hasOwnProperty.call(ob, key)) {
-      // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+      // if string with spaces, add quotations (Double Cheese Burger => 'Double Cheese Burger')
       if (typeof value === "string" && value.indexOf(" ") >= 0) {
         value = "'" + value + "'";
       }
-      // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-      // e.g. {sleepy: true} => ["sleepy=true"]
+      // e.g. {burger_name: 'Double Cheese Burger'} => ["name='Double Cheese Burger'"]
+      // e.g. {devoured: true} => ["devoured=true"]
       arr.push(key + "=" + value);
     }
   }
