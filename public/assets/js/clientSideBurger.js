@@ -16,7 +16,6 @@ function makeNewPosition(){
 }
 
 function animateDiv(){
-
     var newSpot = makeNewPosition();
     // returns the offset coordinates for the selected element, relative to the document.
     var oldSpot = $('#burger-img').offset();
@@ -54,7 +53,7 @@ $(".create-form").on("submit", function (event) {
     $.ajax("/burger", {
         type: "POST",
         data: newBurger
-    }).then(
+    }).done(
         function () {
             // Reload the page to get the updated list
             location.reload();
@@ -71,7 +70,7 @@ $(document).on("click", ".devour", function (event) {
     $.ajax("/devour/" + devourBurger.id, {
         type: "PUT",
         data: devourBurger
-    }).then(
+    }).done(
         // here we have a series of function calls, the first one is the three quarters function, the others are callbacks once the time interval is done.
         function () {
             let quarterBurger = function () {
@@ -101,12 +100,13 @@ $(document).on("click", ".deleteBurger", function (event) {
     let deleteBurger = {
         id: $(this).data("id"),
     }
+    
     // Send the DELETE request.
     $.ajax("/delete/" + deleteBurger.id, {
         type: "DELETE",
         data: deleteBurger
-    }).then(
-        function () {
+    }).done(
+        function() {
             // Reload the page to get the updated list
             window.location.replace("/");
         }
