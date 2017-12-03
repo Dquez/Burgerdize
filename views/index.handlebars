@@ -28,9 +28,7 @@
       {{#each burgers}} {{#if devoured}}
       <div class="burgerDiv">
         <input type="text" name="burger" value="{{id}}. {{burger_name}}" disabled>
-        <form method="POST" action="/delete/{{id}}?_method=DELETE">
-        <button type="submit" class="deleteBurger btn btn-danger" data-id="{{id}}">Make room for more!</button>
-        </form>
+        <button class="deleteBurger btn btn-danger" data-id="{{id}}">Make room for more!</button>
       </div>
       {{/if}} {{/each}}
     </div>

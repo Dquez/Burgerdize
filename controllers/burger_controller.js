@@ -44,7 +44,7 @@ router.delete("/delete/:id", function (req, res) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();
     } else {
-      res.status(200).redirect("/");
+      res.status(200).end();
     }
   });
 });
