@@ -84,9 +84,9 @@ const orm = {
     let queryString = "DELETE FROM " + table;
     queryString += " WHERE " + condition + ";";
     // this function deletes from DB using the ID specified from the client, then adjusts the IDs in the DB to reflect the change i.e instead of 1,3,4,6 we'll have 1,2,3,4 now
-    queryString += "ALTER TABLE " + table + " DROP id; "
-    queryString += "ALTER TABLE " + table + " AUTO_INCREMENT = 1; "
-    queryString += "ALTER TABLE " + table + " ADD id int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;"
+    // queryString += "ALTER TABLE " + table + " DROP id; "
+    // queryString += "ALTER TABLE " + table + " AUTO_INCREMENT = 1; "
+    // queryString += "ALTER TABLE " + table + " ADD id int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;"
 
     connection.query(queryString, condition, function (err, result) {
       if (err) {
