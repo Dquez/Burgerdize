@@ -103,17 +103,6 @@ $(document).on("click", ".deleteBurger", function (event) {
     let deleteBurger = {
         id: $(this).data("id"),
     }
-    // Send the DELETE request.
-    // $.ajax({
-    //     type: "DELETE",
-    //     url: "/delete/" + deleteBurger.id + "?_method=DELETE",
-    //     data: deleteBurger
-    // }).done(
-    //     function () {
-    //         // Reload the page to get the updated list
-    //         window.location.replace("/");
-    //     }
-    // );
     $.ajax("/delete/" + deleteBurger.id + "?_method=DELETE", {
         method: "DELETE",
         data: deleteBurger
