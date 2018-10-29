@@ -12,10 +12,10 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
-    "express-handlebars": "^2.0.1",
+    "express-handlebars": "^3.0.0",
     "method-override": "^2.3.10",
     "mysql": "^2.10.2",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.18.5"
   },
   "devDependencies": {
     "handlebars-helper-css": "^0.1.0"
